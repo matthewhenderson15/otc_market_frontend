@@ -12,19 +12,93 @@ export default function TradeForm() {
     const [desiredCurrency, setDesiredCurrency] = useState("");
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+        e.preventDefault()
         const newItem: TradeItem = {
             id: Date.now().toString(),
             itemName,
             description,
-            desiredItems: desiredItems,
+            desiredItems: desiredItems.split(',').map(item => item.trim()),
             desiredAmount,
             desiredPrice,
             desiredCurrency
-        };
-    };
+        }
+        setTradeItems(prev => [...prev, newItem])
 
-    return <div>
-        <h1>Trade Form</h1>
-    </div>
+        setItemName("")
+        setDescription("")
+        setDesiredItems("")
+        setDesiredAmount(0)
+        setDesiredPrice(0)
+        setDesiredCurrency("")
+    }
+
+    return (
+        <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+                <label htmlFor="itemName" className="block">Item to Trade</label>
+                <input
+                    type="text"
+                    id="itemName"
+                    value={itemName}
+                    onChange={(e) => setItemName(e.target.value)}
+                    className="border rounded p-2 w-full"
+                />
+            </div>
+            <div>
+                <label htmlFor="description" className="block">Description</label>
+                <textarea
+                    id="description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    className="border rounded p-2 w-full"
+                />
+            </div>
+            <div>
+                <label htmlFor="desiredItems" className="block">Desired Items (comma-separated)</label>
+                <input
+                    type="text"
+                    id="desiredItems"
+                    value={desiredItems}
+                    onChange={(e) => setDesiredItems(e.target.value)}
+                    className="border rounded p-2 w-full"
+                />
+            </div>
+            <div>
+                <label htmlFor="desiredAmount" className="block">Desired Amount</label>
+                <input
+                    type="number"
+                    id="desiredAmount"
+                    value={desiredAmount}
+                    onChange={(e) => setDesiredAmount(Number(e.target.value))}
+                    className="border rounded p-2 w-full"
+                />
+            </div>
+            <div>
+                <label htmlFor="desiredPrice" className="block">Desired Price</label>
+                <input
+                    type="number"
+                    id="desiredPrice"
+                    value={desiredPrice}
+                    onChange={(e) => setDesiredPrice(Number(e.target.value))}
+                    className="border rounded p-2 w-full"
+                />
+            </div>
+            <div>
+                <label htmlFor="desiredCurrency" className="block">Desired Currency</label>
+                <input
+                    type="text"
+                    id="desiredCurrency"
+                    value={desiredCurrency}
+                    onChange={(e) => setDesiredCurrency(e.target.value)}
+                    className="border rounded p-2 w-full"
+                />
+            </div>
+            <button 
+              type="submit"
+              className="bg-blue-500 text-white px-4 py-2 rounded"
+            >
+                Add Trade Item
+            </button>
+        </form>
+    )
 }
