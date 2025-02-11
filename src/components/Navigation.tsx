@@ -10,6 +10,12 @@ export default function Navigation() {
     <nav className="bg-gray-800 text-white p-4 mb-8">
       <div className="container mx-auto flex space-x-6">
         <Link
+          href="/"
+          className={`${pathname === '/' ? 'text-blue-300' : ''}`}
+        >
+          Home
+        </Link>
+        <Link
           href="/new-listing"
           className={`${pathname === '/new-listing' ? 'text-blue-300' : ''}`}
         >
@@ -29,5 +35,5 @@ export default function Navigation() {
         </Link>
       </div>
     </nav>
-  );
+  )
 }
