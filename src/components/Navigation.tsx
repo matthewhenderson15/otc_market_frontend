@@ -7,28 +7,28 @@ export default function Navigation() {
   const pathname = usePathname();
 
   return (
-    <nav className="bg-gray-800 text-white p-4 mb-8">
-      <div className="container mx-auto flex space-x-6">
+    <nav className='bg-gray-800 text-white p-4 mb-8'>
+      <div className='container mx-auto flex space-x-6'>
         <Link
-          href="/"
+          href='/'
           className={`${pathname === '/' ? 'text-blue-300' : ''}`}
         >
           Home
         </Link>
         <Link
-          href="/new-listing"
+          href='/new-listing'
           className={`${pathname === '/new-listing' ? 'text-blue-300' : ''}`}
         >
           New Listing
         </Link>
         <Link
-          href="/listings"
+          href='/listings'
           className={`${pathname === '/listings' ? 'text-blue-300' : ''}`}
         >
           Listings
         </Link>
         <Link
-          href="/offers"
+          href='/offers'
           className={`${pathname === '/offers' ? 'text-blue-300' : ''}`}
         >
           Offers
